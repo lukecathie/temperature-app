@@ -10,6 +10,10 @@ __Remember to edit all files paths in nginx.conf and unicorn.rb!__
 
 `bundle install`
 
+`mkdir -p tmp/pids/`
+
+`mkdir -p tmp/sockets/`
+
 `cp config/nginx.conf /etc/nginx/nginx.conf`
 
 `service nginx start` / `/etc/init.d/nginx start`
