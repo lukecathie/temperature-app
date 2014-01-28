@@ -12,7 +12,7 @@ class App < Sinatra::Base
   get '/' do
     temp = Temperature.new.get
     last = TemperatureLog.last
-    log = TemperatureLog.record_now
+    # log = TemperatureLog.record_now
     # "<p>This is <i>dynamic</i> content: #{temp}"
     @logs = TemperatureLog.last(100)
     erb :chart
