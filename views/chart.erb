@@ -1,0 +1,9 @@
+<h1>Home</h1>
+
+<p>
+  <%= @logs.last.temperature %> at <%= @logs.last.time.strftime("%d/%m/%Y at %-I:%M%p").downcase  %>
+</p>
+
+<% @logs.each do |log| %>
+  <%= log.temperature %> |
+<% end %>
