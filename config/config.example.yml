@@ -1,0 +1,2 @@
+temperature_file_path: /sys/bus/w1/devices/28-*/w1_slave
+run_modprobe: 'yes'
