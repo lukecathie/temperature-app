@@ -1,9 +1,39 @@
 <h1>Home</h1>
 
+<% if @last %>
+  <p>
+    <%= @last.temperature %> at <%= @last.time.strftime("%d/%m/%Y at %-I:%M%p").downcase  %>
+  </p>
+<% end %>
+
 <p>
-  <%= @logs.last.temperature %> at <%= @logs.last.time.strftime("%d/%m/%Y at %-I:%M%p").downcase  %>
+  <canvas id="myChart" height="400" width="800"></canvas>
 </p>
 
-<% @logs.each do |log| %>
+<% @logs.each do |_,log| %>
   <%= log.temperature %> |
 <% end %>
+
+
+
+
+<script src="/chart.min.js"></script>
+
+<script type="text/javascript">
+  var data = {
+    labels : <%= (@logs.map{|_,l|l.time.strftime("%-I:%M")}) %>,
+    datasets : [
+      {
+        fillColor : "rgba(220,220,220,0.5)",
+        strokeColor : "rgba(220,220,220,1)",
+        pointColor : "rgba(220,220,220,1)",
+        pointStrokeColor : "#fff",
+        data : <%= ([0]+[8]+[""]+@logs.map{|_,l|l.temperature/1000}+[8]+[20]) %>
+      }
+    ]
+  };
+  console.log(data);
+  var options = {};
+  var ctx = document.getElementById("myChart").getContext("2d");
+  new Chart(ctx).Line(data,options);
+</script>

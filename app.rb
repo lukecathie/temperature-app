@@ -11,10 +11,12 @@ class App < Sinatra::Base
 
   get '/' do
     temp = Temperature.new.get
-    last = TemperatureLog.last
-    # log = TemperatureLog.record_now
-    # "<p>This is <i>dynamic</i> content: #{temp}"
-    @logs = TemperatureLog.last(100)
+    TemperatureLog.record_now
+    @logs = {}
+    TemperatureLog.all(order: [:time.asc], limit: 100).each do |log|
+      @logs[log.time.strftime('%Y-%m-%d%-I:%M%p')] = log
+      @last = log
+    end
     erb :chart
   end
 end

@@ -2,3 +2,4 @@ Gemfile.lock
 tmp/*
 config/config.yml
 .DS_Store
+*.db
