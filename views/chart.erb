@@ -28,7 +28,7 @@
         strokeColor : "rgba(220,220,220,1)",
         pointColor : "rgba(220,220,220,1)",
         pointStrokeColor : "#fff",
-        data : <%= (@logs.map{|_,l|(l.temperature.to_f/100)}) %>
+        data : <%= (@logs.map{|_,l|(l.temperature.to_f/1000)}) %>
       }
     ]
   };
