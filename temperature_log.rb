@@ -1,5 +1,5 @@
 require 'data_mapper' 
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/development.db")
+DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/#{ENV['env']}.db")
 
 class TemperatureLog
   include DataMapper::Resource
