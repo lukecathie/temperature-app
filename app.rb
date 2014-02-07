@@ -5,6 +5,8 @@ require './temperature_log'
 require 'sinatra/config_file'
 require 'data_mapper'
 require 'time'
+require 'json'
+
 
 class App < Sinatra::Base
   register Sinatra::Initializers
@@ -19,5 +21,11 @@ class App < Sinatra::Base
     end
     @logs = @logs.sort_by{|time,_|time}
     erb :chart
+  end
+
+  get '/temperature.json' do
+    content_type :json
+    log = TemperatureLog.record_now
+    { temperature: log.temperature, time: log.time }.to_json
   end
 end
