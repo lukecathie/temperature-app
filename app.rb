@@ -25,7 +25,7 @@ class App < Sinatra::Base
 
   get '/temperature.json' do
     content_type :json
-    log = TemperatureLog.record_now
-    { temperature: log.temperature, time: log.time }.to_json
+    last_log = TemperatureLog.all(order: [:time.desc], limit: 1).first
+    { temperature: last_log.temperature, time: last_log.time }.to_json
   end
 end
