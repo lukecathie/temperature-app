@@ -18,7 +18,7 @@
 <body>
 
   <% if @last %>
-    <h1><%= (@last.temperature / 1000).round(2) %>℃ <small>at <%= @last.time.strftime("%d/%m/%Y at %-I:%M%p").downcase  %></small></h1>
+    <h1 title="<%= @last.temperature %>"><%= (@last.temperature / 1000).round(2) %>℃ <small>at <%= @last.time.strftime("%d/%m/%Y at %-I:%M%p").downcase  %></small></h1>
   <% end %>
 
   <p>
