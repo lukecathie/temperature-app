@@ -1,37 +1,51 @@
-<meta http-equiv="refresh" content="50" >
+<<!DOCTYPE html>
+<html>
+<head>
+  <title>Temp</title>
+  <meta http-equiv="refresh" content="50" >
+  <style type="text/css">
+    body {
+      font-family: 'Helvetica Neue'
+    }
+  </style>
+</head>
+<body>
 
-<% if @last %>
-  <h1><%= @last.temperature %> <small>at <%= @last.time.strftime("%d/%m/%Y at %-I:%M%p").downcase  %></small></h1>
-<% end %>
+  <% if @last %>
+    <h1><%= (@last.temperature / 1000).round(2) %>℃ <small>at <%= @last.time.strftime("%d/%m/%Y at %-I:%M%p").downcase  %></small></h1>
+  <% end %>
 
-<p>
-  <canvas id="myChart" height="400" width="800"></canvas>
-</p>
-<!-- 
-<% @logs.each do |_,log| %>
-  <%= log.temperature %> |
-<% end %> -->
-
-
+  <p>
+    <canvas id="myChart" height="400" width="800"></canvas>
+  </p>
+  <!-- 
+  <% @logs.each do |_,log| %>
+    <%= log.temperature %> |
+  <% end %> -->
 
 
-<script src="/chart.min.js"></script>
 
-<script type="text/javascript">
-  var data = {
-    labels : <%= (@logs.map{|_,l|l.time.strftime("%H:%M")}) %>,
-    datasets : [
-      {
-        fillColor : "rgba(220,220,220,0.5)",
-        strokeColor : "rgba(220,220,220,1)",
-        pointColor : "rgba(220,220,220,1)",
-        pointStrokeColor : "#fff",
-        data : <%= (@logs.map{|_,l|(l.temperature.to_f/1000)}) %>
-      }
-    ]
-  };
-  console.log(data);
-  var options = {};
-  var ctx = document.getElementById("myChart").getContext("2d");
-  new Chart(ctx).Line(data,options);
-</script>
+
+  <script src="/chart.min.js"></script>
+
+  <script type="text/javascript">
+    var data = {
+      labels : <%= (@logs.map{|_,l|l.time.strftime("%H:%M")}) %>,
+      datasets : [
+        {
+          fillColor : "rgba(220,220,220,0.5)",
+          strokeColor : "rgba(220,220,220,1)",
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          data : <%= (@logs.map{|_,l|(l.temperature.to_f/1000)}) %>
+        }
+      ]
+    };
+    console.log(data);
+    var options = {};
+    var ctx = document.getElementById("myChart").getContext("2d");
+    new Chart(ctx).Line(data,options);
+  </script>
+
+</body>
+</html>
