@@ -2,8 +2,8 @@ class Temperature
   def initialize
     @filelocation = ENV['temperature_file_path']
     @wemo_name = ENV['wemo_name']
-    @top_temp = ENV['top_temp']
-    @bot_temp = ENV['bot_temp']
+    @top_temp = ENV['top_temp'].to_f
+    @bot_temp = ENV['bot_temp'].to_f
   end
 
   def get
