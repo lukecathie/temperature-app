@@ -15,7 +15,7 @@ class App < Sinatra::Base
     temp = Temperature.new.get
     TemperatureLog.record_now
     @logs = {}
-    TemperatureLog.all(order: [:time.desc], limit: 100).each do |log|
+    TemperatureLog.all(order: [:time.desc], limit: 50).each do |log|
       @logs[log.time.strftime('%Y%m%d%H%M')] = log
       @last ||= log
     end
