@@ -1,20 +1,16 @@
 <meta http-equiv="refresh" content="50" >
 
-<h1>Home</h1>
-
 <% if @last %>
-  <p>
-    <%= @last.temperature %> at <%= @last.time.strftime("%d/%m/%Y at %-I:%M%p").downcase  %>
-  </p>
+  <h1><%= @last.temperature %> <small>at <%= @last.time.strftime("%d/%m/%Y at %-I:%M%p").downcase  %></small></h1>
 <% end %>
 
 <p>
   <canvas id="myChart" height="400" width="800"></canvas>
 </p>
-
+<!-- 
 <% @logs.each do |_,log| %>
   <%= log.temperature %> |
-<% end %>
+<% end %> -->
 
 
 

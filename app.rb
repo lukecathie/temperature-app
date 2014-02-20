@@ -17,7 +17,7 @@ class App < Sinatra::Base
     @logs = {}
     TemperatureLog.all(order: [:time.desc], limit: 100).each do |log|
       @logs[log.time.strftime('%Y%m%d%H%M')] = log
-      @last = log
+      @last ||= log
     end
     @logs = @logs.sort_by{|time,_|time}
     erb :chart
