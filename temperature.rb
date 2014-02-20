@@ -18,7 +18,7 @@ class Temperature
     return if line.empty?
     temp_str = line.split('=',2).last
     temp = temp_str.to_i
-    `wemo switch #{@wemo_name} off` if temp > 19
+    `wemo switch "#{@wemo_name}" off` if temp > 19
     temp
   end
 
