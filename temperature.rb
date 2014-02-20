@@ -8,11 +8,11 @@ class Temperature
   end
 
   def fetch_value
-    return unless !Dir.glob(@filelocation).empty?
     if ENV['run_modprobe'] == 'yes'
       `sudo modprobe w1-gpio`
       `sudo modprobe w1-therm`
     end
+    return unless !Dir.glob(@filelocation).empty?
     line = `tail -n 1 #{@filelocation}`
     return if line.empty?
     temp_str = line.split('=',2).last
