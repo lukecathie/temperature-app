@@ -1,6 +1,7 @@
 class Temperature
   def initialize
     @filelocation = ENV['temperature_file_path']
+    @wemo_name = ENV['wemo_name']
   end
 
   def get
@@ -16,7 +17,9 @@ class Temperature
     line = `tail -n 1 #{@filelocation}`
     return if line.empty?
     temp_str = line.split('=',2).last
-    temp_str.to_i
+    temp = temp_str.to_i
+    `wemo switch #{@wemo_name} off` if temp > 19
+    temp
   end
 
 end
