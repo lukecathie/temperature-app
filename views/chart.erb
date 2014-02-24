@@ -20,9 +20,11 @@
   <% if @last %>
     <h1 title="<%= @last.temperature %>"><%= (@last.temperature.to_f / 1000).round(2) %>℃ <small>at <%= @last.time.strftime("%d/%m/%Y at %-I:%M%p").downcase  %></small></h1>
   <% end %>
-
   <p>
     <canvas id="myChart" height="400" width="800"></canvas>
+  </p>
+  <p>
+    Target: <%= ENV['target_temp'].to_i %>℃
   </p>
   <!-- 
   <% @logs.each do |_,log| %>
