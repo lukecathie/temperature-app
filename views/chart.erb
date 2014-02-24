@@ -24,7 +24,7 @@
     <canvas id="myChart" height="400" width="800"></canvas>
   </p>
   <p>
-    Target: <%= ENV['target_temp'].to_i %>℃
+    Target: <%= ENV['target_temp'].to_f.round(2) %>℃
   </p>
   <!-- 
   <% @logs.each do |_,log| %>
